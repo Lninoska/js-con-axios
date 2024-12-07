@@ -33,3 +33,28 @@ const leerArchivo = async () => {
 }
 
 leerArchivo()
+
+// TRANSFORMAR ARCHIVOS DE TEXTO A ARCHIVOS JS 
+
+const  urls  = require ('./ejercicio/urlAPI'); 
+const pokemon = require('./ejercicio/pokemon');
+const { resolve } = require('path');
+
+const ejecutararchivosJS = async () => {
+    try {
+        const Array = numeroAzar(pokemon.length)
+        const seleccionaPokemon = pokemon[Array]
+
+        console.log(`Pokemon seleccionado: ${seleccionaPokemon}`)
+
+        for(const url of urls) {
+            const { data } = await axios.get(url);
+            console.log(`Datos obtenidos de ${url}`, data)
+            await new Promise( resolve => setTimeout(resolve, 4000))
+        }
+    } catch(error){
+        console.log("error", Error.message)
+    }
+}
+
+ejecutararchivosJS()
